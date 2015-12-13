@@ -18,7 +18,23 @@
             <g:if test="${flash.message}">
                 <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:table collection="${competitionList}" properties="['name', 'days']"/>
+
+            <table>
+                <thead>
+                <tr>
+                    <g:sortableColumn property="name" title="Name" />
+                    <g:sortableColumn property="actions" title="Actions" />
+                </tr>
+                </thead>
+                <tbody>
+                <g:each in="${competitionList}" status="i" var="competition">
+                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+                        <td><g:link action="show" id="${competition.id}">${fieldValue(bean: competition, field: "name")}</g:link></td>
+                        <td><g:link action="setCurrrentCompetition" id="${competition.id}">Select</g:link></td>
+                    </tr>
+                </g:each>
+                </tbody>
+            </table>
 
             <div class="pagination">
                 <g:paginate total="${competitionCount ?: 0}" />

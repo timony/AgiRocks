@@ -65,6 +65,10 @@ grails:
                 scriptlets: html
                 taglib: none
                 staticparts: none
+    plugins:
+        fields:
+            disableLookupCache: true
+
 ---
 hibernate:
     cache:
@@ -87,7 +91,7 @@ dataSource:
 environments:
     development:
         dataSource:
-            dbCreate: create
+            dbCreate: update
             url: jdbc:postgresql://localhost:5432/agirocksdev
     test:
         dataSource:

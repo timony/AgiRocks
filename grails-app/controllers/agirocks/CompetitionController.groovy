@@ -17,6 +17,11 @@ class CompetitionController {
         respond competition
     }
 
+    def setCurrrentCompetition(Competition competition) {
+        session["currentCompetition"] = competition
+        redirect(action: 'show', params: [id: competition.id])
+    }
+
     def create() {
         respond new Competition(params)
     }

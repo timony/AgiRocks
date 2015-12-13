@@ -10,7 +10,7 @@ class DayController {
 
     def index(Integer max) {
         params.max = Math.min(max ?: 10, 100)
-        respond Day.list(params), model:[dayCount: Day.count()]
+        respond Day.findAllByCompetition(session.currentCompetition), model:[dayCount: Day.count()]
     }
 
     def show(Day day) {
