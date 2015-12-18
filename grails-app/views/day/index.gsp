@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'day.label', default: 'Day')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#list-day" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-day" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
-            <f:table collection="${dayList}" />
+<head>
+    <meta name="layout" content="main"/>
+    <g:set var="entityName" value="${message(code: 'day.label', default: 'Day')}"/>
+    <title><g:message code="default.list.label" args="[entityName]"/></title>
+</head>
 
-            <div class="pagination">
-                <g:paginate total="${dayCount ?: 0}" />
-            </div>
-        </div>
-    </body>
+<body>
+
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <g:sortableColumn property="date" title="Date"/>
+        <th>
+            <g:message code="default.actions.label"/>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <g:each in="${dayList}" status="i" var="day">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <td><g:link action="show" id="${day.id}">${fieldValue(bean: day, field: "date")}</g:link></td>
+            <td><g:link action="setCurrrentDay" id="${day.id}">Select</g:link></td>
+        </tr>
+    </g:each>
+    </tbody>
+</table>
+
+<div class="pagination">
+    <g:paginate total="${dayCount ?: 0}"/>
+</div>
+
+</body>
 </html>

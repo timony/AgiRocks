@@ -17,6 +17,11 @@ class DayController {
         respond day
     }
 
+    def setCurrrentDay(Day day) {
+        session["currentDay"] = day
+        redirect(action: 'show', params: [id: day.id])
+    }
+
     def create() {
         respond new Day(params)
     }

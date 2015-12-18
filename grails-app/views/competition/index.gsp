@@ -1,44 +1,50 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="layout" content="main" />
-        <g:set var="entityName" value="${message(code: 'competition.label', default: 'Competition')}" />
-        <title><g:message code="default.list.label" args="[entityName]" /></title>
-    </head>
-    <body>
-        <a href="#list-competition" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-        <div class="nav" role="navigation">
-            <ul>
-                <li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
-                <li><g:link class="create" action="create"><g:message code="default.new.label" args="[entityName]" /></g:link></li>
-            </ul>
-        </div>
-        <div id="list-competition" class="content scaffold-list" role="main">
-            <h1><g:message code="default.list.label" args="[entityName]" /></h1>
-            <g:if test="${flash.message}">
-                <div class="message" role="status">${flash.message}</div>
-            </g:if>
+<head>
+    <meta name="layout" content="main"/>
+    <g:set var="entityName" value="${message(code: 'competition.label', default: 'Competition')}"/>
+    <title><g:message code="default.list.label" args="[entityName]"/></title>
+</head>
 
-            <table>
-                <thead>
-                <tr>
-                    <g:sortableColumn property="name" title="Name" />
-                    <g:sortableColumn property="actions" title="Actions" />
-                </tr>
-                </thead>
-                <tbody>
-                <g:each in="${competitionList}" status="i" var="competition">
-                    <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
-                        <td><g:link action="show" id="${competition.id}">${fieldValue(bean: competition, field: "name")}</g:link></td>
-                        <td><g:link action="setCurrrentCompetition" id="${competition.id}">Select</g:link></td>
-                    </tr>
-                </g:each>
-                </tbody>
-            </table>
+<body>
+<table class="table table-striped table-hover">
+    <thead>
+    <tr>
+        <g:sortableColumn property="name" title="Name"/>
+        <th>
+            <g:message code="default.actions.label"/>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <g:each in="${competitionList}" status="i" var="competition">
+        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+            <td><g:link action="show"
+                        id="${competition.id}">${fieldValue(bean: competition, field: "name")}</g:link></td>
+            <td>
+                <g:link action="setCurrrentCompetition" id="${competition.id}"
+                        class="btn btn-sm btn-default"><g:message code="default.button.select.label"/>
+                </g:link>
+                <g:link action="show" id="${competition.id}" class="btn btn-sm btn-default"><g:message
+                        code="default.button.view.label"/></g:link>
+                <g:link action="edit" id="${competition.id}" class="btn btn-sm btn-default"><g:message
+                        code="default.button.edit.label"/></g:link>
+            </td>
+        </tr>
+    </g:each>
+    </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">
+            <g:link class="btn btn-default" action="create"><g:message code="default.new.label"
+                                                                       args="[entityName]"/></g:link>
+        </td>
+    </tr>
+    </tfoot>
+</table>
 
-            <div class="pagination">
-                <g:paginate total="${competitionCount ?: 0}" />
-            </div>
-        </div>
-    </body>
+<div class="pagination">
+    <g:paginate total="${competitionCount ?: 0}"/>
+</div>
+</body>
 </html>

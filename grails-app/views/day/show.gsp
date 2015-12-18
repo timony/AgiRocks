@@ -19,7 +19,8 @@
             <g:if test="${flash.message}">
             <div class="message" role="status">${flash.message}</div>
             </g:if>
-            <f:display bean="day" />
+            <f:display bean="day"  />
+
             <g:form resource="${this.day}" method="DELETE">
                 <fieldset class="buttons">
                     <g:link class="edit" action="edit" resource="${this.day}"><g:message code="default.button.edit.label" default="Edit" /></g:link>
