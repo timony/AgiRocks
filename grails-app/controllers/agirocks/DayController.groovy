@@ -45,9 +45,9 @@ class DayController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.created.message', args: [message(code: 'day.label', default: 'Day'), day.id])
-                redirect day
+                redirect day.competition
             }
-            '*' { respond day, [status: CREATED] }
+            '*' { respond day.competition, [status: CREATED] }
         }
     }
 
