@@ -14,6 +14,6 @@ class Day {
     }
 
     static constraints = {
-        date min: new Date()
+        date min: new Date(), unique: 'competition'
     }
 }
