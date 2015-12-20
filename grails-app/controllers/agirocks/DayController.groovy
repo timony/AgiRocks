@@ -74,9 +74,9 @@ class DayController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'day.label', default: 'Day'), day.id])
-                redirect day
+                redirect day.competition
             }
-            '*'{ respond day, [status: OK] }
+            '*'{ respond day.competition, [status: OK] }
         }
     }
 
@@ -89,12 +89,13 @@ class DayController {
             return
         }
 
+        Competition competition = day.competition
         day.delete flush:true
 
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.deleted.message', args: [message(code: 'day.label', default: 'Day'), day.id])
-                redirect action:"index", method:"GET"
+                redirect competition
             }
             '*'{ render status: NO_CONTENT }
         }
