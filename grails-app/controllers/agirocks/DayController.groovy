@@ -23,7 +23,7 @@ class DayController {
     }
 
     def create() {
-        respond new Day(params)
+        respond new Day(competition: Competition.get(params.competitionId), date: new Date())
     }
 
     @Transactional
@@ -39,7 +39,7 @@ class DayController {
             respond day.errors, view:'create'
             return
         }
-
+        
         day.save flush:true
 
         request.withFormat {

@@ -18,7 +18,7 @@
     </thead>
     <tbody>
     <g:each in="${competitionList}" status="i" var="competition">
-        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+        <tr>
             <td><g:link action="show"
                         id="${competition.id}">${fieldValue(bean: competition, field: "name")}</g:link></td>
             <td>

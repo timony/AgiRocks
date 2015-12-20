@@ -19,12 +19,29 @@
     </thead>
     <tbody>
     <g:each in="${dayList}" status="i" var="day">
-        <tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+        <tr>
             <td><g:link action="show" id="${day.id}">${fieldValue(bean: day, field: "date")}</g:link></td>
-            <td><g:link action="setCurrrentDay" id="${day.id}">Select</g:link></td>
+            <td>
+                <g:link action="setCurrrentDay" id="${day.id}"
+                        class="btn btn-sm btn-default"><g:message code="default.button.select.label"/>
+                </g:link>
+                <g:link action="show" id="${day.id}" class="btn btn-sm btn-default"><g:message
+                        code="default.button.view.label"/></g:link>
+                <g:link action="edit" id="${day.id}" class="btn btn-sm btn-default"><g:message
+                        code="default.button.edit.label"/></g:link>
+            </td>
+
         </tr>
     </g:each>
     </tbody>
+    <tfoot>
+    <tr>
+        <td colspan="2">
+            <g:link class="btn btn-default" action="create"><g:message code="default.new.label"
+                                                                       args="[entityName]"/></g:link>
+        </td>
+    </tr>
+    </tfoot>
 </table>
 
 <div class="pagination">
