@@ -40,7 +40,6 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><g:link controller="competition">Competitions</g:link></li>
-                <li><g:link controller="day">Days</g:link></li>
             </ul>
         </div>
 

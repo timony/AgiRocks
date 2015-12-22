@@ -23,7 +23,8 @@ class DayController {
     }
 
     def create() {
-        respond new Day(competition: Competition.get(params.competitionId), date: new Date() + 1)
+        Competition competition = Competition.get(params.competitionId)
+        respond new Day(competition: competition, date: new Date() + 1)
     }
 
     @Transactional
