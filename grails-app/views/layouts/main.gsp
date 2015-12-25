@@ -3,11 +3,21 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title><g:layoutTitle default="Grails"/></title>
-    <meta name="generator" content="Bootply"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title><g:layoutTitle default="AgiRocks"/></title>
     <asset:stylesheet src="application.css"/>
     <asset:javascript src="application.js"/>
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            window.setTimeout(function () {
+                $(".alert").fadeTo(1000, 0).slideUp(1000, function () {
+                    $(this).remove();
+                });
+            }, 3000);
+
+        });
+    </script>
 </head>
 
 <body>
@@ -22,7 +32,7 @@
     </g:if>
 </ol>
 
-<div class="navbar navbar-default">
+<div class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -39,7 +49,8 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><g:link controller="competition">Competitions</g:link></li>
+                <li><g:link controller="competition"><g:message code="competitions.label"/></g:link></li>
+                <li><g:link controller="team"><g:message code="teams.label"/></g:link></li>
             </ul>
         </div>
 
@@ -48,6 +59,7 @@
 </div>
 
 <div class="container">
+
     <div class="page-header">
         <h3><g:layoutTitle default="Grails"/></h3>
         <g:if test="${flash.message}">
