@@ -12,18 +12,13 @@
         <g:each in="${value}" status="i" var="day">
             <tr>
                 <td><g:link controller="day" action="show"
-                            id="${day.id}">${fieldValue(bean: day, field: "date")}</g:link></td>
+                            id="${day.id}">${day.date.format(cz.timony.agiRocks.AppConstants.DATE_FORMAT)}</g:link></td>
                 <td>
                     <g:link controller="day" action="setCurrrentDay" id="${day.id}"
                             class="btn btn-xs btn-default"><g:message code="default.button.select.label"/>
                     </g:link>
                     <g:link controller="day" action="edit" id="${day.id}" class="btn btn-xs btn-default"><g:message
                             code="default.button.edit.label"/></g:link>
-                    <g:form resource="${day}" method="DELETE" class="form-horizontal">
-                        <input class="btn btn-xs btn-default" type="submit"
-                               value="${message(code: 'default.button.delete.label', default: 'Delete')}"
-                               onclick="return confirm('${message(code: 'default.button.delete.confirm.message', default: 'Are you sure?')}');"/>
-                    </g:form>
                 </td>
             </tr>
         </g:each>
