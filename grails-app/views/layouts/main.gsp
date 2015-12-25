@@ -18,16 +18,21 @@
 
         });
     </script>
+    <g:layoutHead/>
 </head>
 
 <body>
 <ol class="breadcrumb">
     <g:if test="${session.currentCompetition}">
-        <li><g:link controller="competition" action="show"
-                    id="${session.currentCompetition.id}">Competition: ${session.currentCompetition.name}</g:link></li>
+        <li><g:link controller="competition" action="show" class="btn btn-default"
+                    id="${session.currentCompetition.id}">
+                Competition: ${session.currentCompetition.name}
+            </g:link>
+
+        </li>
     </g:if>
     <g:if test="${session.currentDay}">
-        <li><g:link controller="day" action="show"
+        <li><g:link controller="day" action="show" class="btn btn-default"
                     id="${session.currentDay.id}">Day: ${session.currentDay.date.format('dd. MM. yyyy')}</g:link></li>
     </g:if>
 </ol>
@@ -64,6 +69,9 @@
         <h3><g:layoutTitle default="Grails"/></h3>
         <g:if test="${flash.message}">
             <div class="alert alert-success" role="alert">${flash.message}</div>
+        </g:if>
+        <g:if test="${flash.error}">
+            <div class="alert alert-danger" role="alert">${flash.error}</div>
         </g:if>
     </div>
     <g:layoutBody/>

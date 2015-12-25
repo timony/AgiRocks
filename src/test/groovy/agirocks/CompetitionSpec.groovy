@@ -15,8 +15,13 @@ class CompetitionSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
-        expect:"fix me"
-            true == false
+    void "test competition created successfuly"() {
+        when:
+        Competition competition = new Competition(name: "C1")
+        assert competition.validate()
+        competition.save()
+
+        then:
+            Competition.findAllByName("C1").size() == 1
     }
 }
