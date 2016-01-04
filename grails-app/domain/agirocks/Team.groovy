@@ -1,5 +1,8 @@
 package agirocks
 
+import grails.rest.Resource
+
+@Resource(uri = '/teams', formats = ['html', 'json'])
 class Team {
 
     String firstName
@@ -39,7 +42,7 @@ class Team {
 
     @Override
     String toString() {
-        return String.format('%s %s/%s', firstName, sureName, dogName)
+        return String.format('%s %s / %s', firstName, sureName, dogName)
     }
 
 }

@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <export:resource />
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'team.label', default: 'Competition')}"/>
     <title><g:message code="default.list.label" args="[entityName]"/></title>
@@ -38,8 +39,8 @@
     <thead>
     <tr>
         <th></th>
-        <g:sortableColumn property="category" titleKey="category.label"/>
         <g:sortableColumn property="size" titleKey="size.label"/>
+        <g:sortableColumn property="category" titleKey="category.label"/>
         <g:sortableColumn property="firstName" titleKey="property.firstName.label"/>
         <g:sortableColumn property="sureName" titleKey="property.sureName.label"/>
         <g:sortableColumn property="dogName" titleKey="property.dogName.label"/>
@@ -64,8 +65,8 @@
                     <g:checkBox name="myCheckbox" value="${false}" data-toggle="tooltip" data-original-title="${day}"/>
                 </g:each>
             </td>
+            <td align="right">${fieldValue(bean: team, field: 'size')}</td>
             <td>${fieldValue(bean: team, field: 'category')}</td>
-            <td>${fieldValue(bean: team, field: 'size')}</td>
             <td><g:link action="show"
                         id="${team.id}">${fieldValue(bean: team, field: "firstName")}</g:link></td>
             <td>${fieldValue(bean: team, field: 'sureName')}</td>
@@ -85,6 +86,8 @@
         <td colspan="8">
             <g:link class="btn btn-default" action="create"><g:message code="default.new.label"
                                                                        args="[entityName]"/></g:link>
+            <g:link class="btn btn-default" action="json">JSON</g:link>
+            <export:formats action="testPrintPdf" formats="['pdf','csv']" />
         </td>
     </tr>
     </tfoot>

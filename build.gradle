@@ -5,6 +5,7 @@ buildscript {
     repositories {
         mavenLocal()
         maven { url "https://repo.grails.org/grails/core" }
+        maven { url  "http://dl.bintray.com/grails/plugins" }
     }
     dependencies {        
         classpath "org.grails:grails-gradle-plugin:$grailsVersion"
@@ -41,6 +42,7 @@ assets {
 repositories {
     mavenLocal()
     maven { url "https://repo.grails.org/grails/core" }
+    maven { url  "http://dl.bintray.com/grails/plugins" }
 }
 
 dependencyManagement {
@@ -74,6 +76,14 @@ dependencies {
     testRuntime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.44.0'
 
     console "org.grails:grails-console"
+
+    //timony added
+
+    // basic exporting, does not allow templates??
+    compile "org.grails.plugins:export:2.0.0"
+
+    //autosuggestion
+    compile "org.grails.plugins:ajaxdependancyselection:1.0"
 }
 
 task wrapper(type: Wrapper) {

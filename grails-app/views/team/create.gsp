@@ -4,6 +4,29 @@
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'team.label', default: 'Team')}"/>
     <title><g:message code="default.create.label" args="[entityName]"/></title>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("input[name='breed']").autocomplete({
+                source: function(request, response){
+                    $.ajax({
+                        url: "/team/breedList", // remote datasource
+                        data: request,
+                        success: function(data){
+                            response(data); // set the response
+                        },
+                        error: function(){ // handle server errors
+                           console.log("Cannot ajax values for the field: breed")
+                        }
+                    });
+                },
+                autoFocus: true,
+                delay: 0,
+                minLength: 2 // triggered only after minimum 2 characters have been entered.
+
+            });
+        });
+    </script>
 </head>
 
 <body>
@@ -22,6 +45,7 @@
             <f:field property="category" value="A2"/>
             <f:field property="size" value="M"/>
             <f:field property="osa"/>
+
         </fieldset>
         <fieldset class="buttons">
             <g:submitButton name="create" class="btn btn-default"
