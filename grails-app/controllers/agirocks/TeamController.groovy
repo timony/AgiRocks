@@ -153,6 +153,10 @@ class TeamController {
         render autoCompletionService.breedList(params) as JSON
     }
 
+    def osaList = {
+        render autoCompletionService.osaList(params) as JSON
+    }
+
     protected void notFound() {
         request.withFormat {
             form multipartForm {

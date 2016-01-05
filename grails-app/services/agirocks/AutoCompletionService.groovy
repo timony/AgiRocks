@@ -16,4 +16,16 @@ class AutoCompletionService {
 
         results
     }
+
+    def osaList(params) {
+        def results = Team.withCriteria {
+            isNotNull("osa")
+            ilike("osa", "%${params.term}%")
+            projections {
+                distinct("osa")
+            }
+        }
+
+        results
+    }
 }
