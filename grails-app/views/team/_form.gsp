@@ -5,6 +5,8 @@
     <f:field property="dogName"/>
     <f:field property="nick"/>
     <f:field property="breed"/>
+    <f:field property="kennel"/>
+
     <f:field property="category"/>
     <f:field property="size"/>
     <f:field property="osa"/>

@@ -5,27 +5,15 @@ import grails.transaction.Transactional
 @Transactional(readOnly = true)
 class AutoCompletionService {
 
-    def breedList(params) {
+    def teamParamList(params, property) {
         def results = Team.withCriteria {
-            isNotNull("breed")
-            ilike("breed", "%${params.term}%")
+            isNotNull(property)
+            ilike(property, "%${params.term}%")
             projections {
-                distinct("breed")
+                distinct(property)
             }
         }
-
         results
     }
-
-    def osaList(params) {
-        def results = Team.withCriteria {
-            isNotNull("osa")
-            ilike("osa", "%${params.term}%")
-            projections {
-                distinct("osa")
-            }
-        }
-
-        results
-    }
+    
 }

@@ -92,9 +92,9 @@ class TeamController {
         request.withFormat {
             form multipartForm {
                 flash.message = message(code: 'default.updated.message', args: [message(code: 'team.label', default: 'Team'), team.id])
-                redirect team
+                redirect action: "index", method: "GET"
             }
-            '*' { respond team, [status: OK] }
+            '*' { redirect action: "index", method: "GET" }
         }
     }
 
@@ -150,11 +150,15 @@ class TeamController {
     }
 
     def breedList = {
-        render autoCompletionService.breedList(params) as JSON
+        render autoCompletionService.teamParamList(params, 'breed') as JSON
     }
 
     def osaList = {
-        render autoCompletionService.osaList(params) as JSON
+        render autoCompletionService.teamParamList(params, 'osa') as JSON
+    }
+
+    def kennelList = {
+        render autoCompletionService.teamParamList(params, 'kennel') as JSON
     }
 
     protected void notFound() {
