@@ -8,7 +8,8 @@
 * compiled file, but it's generally better to create a new file per style scope.
 *
 *= require bootstrap
-*= require jquery-ui-bootstrap
+*= require custom-theme/jquery-ui-1.10.3.custom
+*= require jquery-ui
 *= require styles
 *= require_self
 */

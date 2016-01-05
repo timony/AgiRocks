@@ -1,0 +1,1 @@
+<g:render template="/shared/chooseEnumWrapperTemplate" model="['values':agirocks.Size.values()]"/>

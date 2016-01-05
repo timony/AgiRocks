@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<g:form resource="${this.day}" method="DELETE" class="form-horizontal">
+<g:form resource="${this.team}" method="DELETE" class="form-horizontal">
     <div class="panel panel-default">
         <div class="panel-body">
             <f:with bean="team">
