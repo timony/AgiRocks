@@ -1,5 +1,6 @@
 <f:with bean="team">
     <g:hiddenField name="competition.id" value="${session["currentCompetition"].id}"/>
+    <f:field property="workingBookNumber" />
     <f:field property="firstName"/>
     <f:field property="sureName"/>
     <f:field property="dogName"/>
