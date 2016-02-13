@@ -39,8 +39,8 @@
 
     <div class="input-group">
         <span class="input-group-btn">
-            <button class="btn btn-default" type="button" id="${property}button">Kacr</button>
+            <button class="btn btn-default" type="button" id="${property}button">Kacr.info</button>
         </span>
-        <g:textField name="${property}" id="${property}id" class="form-control" placeholder="kacr.."/>
+        <g:textField name="${property}" value="${value}" id="${property}id" class="form-control" />
     </div>
 </g:render>
