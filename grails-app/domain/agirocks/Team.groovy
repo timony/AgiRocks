@@ -17,7 +17,7 @@ class Team {
     String osa
     String kennel
 
-    Long workingBookNumber
+    String workingBookNumber
 
     Category category
     Size size
@@ -31,7 +31,7 @@ class Team {
 
     static constraints = {
         nick nullable: true
-        workingBookNumber nullable: true
+        workingBookNumber nullable: true, unique: true
         osa nullable: true
         kennel nullable: true
         breed nullable: true

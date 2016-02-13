@@ -41,6 +41,7 @@
         <th></th>
         <g:sortableColumn property="size" titleKey="size.label"/>
         <g:sortableColumn property="category" titleKey="category.label"/>
+        <g:sortableColumn property="workingBookNumber" titleKey="property.workingBookNumber.label"/>
         <g:sortableColumn property="firstName" titleKey="property.firstName.label"/>
         <g:sortableColumn property="sureName" titleKey="property.sureName.label"/>
         <g:sortableColumn property="dogName" titleKey="property.dogName.label"/>
@@ -67,6 +68,7 @@
             </td>
             <td align="right">${fieldValue(bean: team, field: 'size')}</td>
             <td>${fieldValue(bean: team, field: 'category')}</td>
+            <td>${fieldValue(bean: team, field: 'workingBookNumber')}</td>
             <td><g:link action="show"
                         id="${team.id}">${fieldValue(bean: team, field: "firstName")}</g:link></td>
             <td>${fieldValue(bean: team, field: 'sureName')}</td>

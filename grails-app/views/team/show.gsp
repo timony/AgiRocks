@@ -11,6 +11,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             <f:with bean="team">
+                <f:display property="workingBookNumber"/>
                 <f:display property="firstName" />
                 <f:display property="sureName"/>
                 <f:display property="nickName"/>
