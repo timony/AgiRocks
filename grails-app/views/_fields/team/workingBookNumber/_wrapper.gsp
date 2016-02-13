@@ -36,6 +36,11 @@
             })
         });
     </script>
-    <g:textField name="${property}" id="${property}id" class="form-control"/>
-    <input type="button" id="${property}button"/>
+
+    <div class="input-group">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button" id="${property}button">Kacr</button>
+        </span>
+        <g:textField name="${property}" id="${property}id" class="form-control" placeholder="kacr.."/>
+    </div>
 </g:render>
