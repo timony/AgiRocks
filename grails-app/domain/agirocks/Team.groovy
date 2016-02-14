@@ -31,7 +31,7 @@ class Team {
 
     static constraints = {
         nick nullable: true
-        workingBookNumber nullable: true, unique: true
+        workingBookNumber nullable: true, unique: 'competition'
         osa nullable: true
         kennel nullable: true
         breed nullable: true
