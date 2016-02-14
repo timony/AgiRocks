@@ -150,14 +150,17 @@ class TeamController {
     }
 
     def breedList = {
+        response.status = 200
         render autoCompletionService.teamParamList(params, 'breed') as JSON
     }
 
     def osaList = {
+        response.status = 200
         render autoCompletionService.teamParamList(params, 'osa') as JSON
     }
 
     def kennelList = {
+        response.status = 200
         render autoCompletionService.teamParamList(params, 'kennel') as JSON
     }
 
