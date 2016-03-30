@@ -10,12 +10,13 @@ import static org.springframework.http.HttpStatus.*
 @Transactional(readOnly = true)
 class TeamController {
 
-    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+    static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE", doImport: "POST"]
 
     // Export service provided by Export plugin
     def exportService
 
     def autoCompletionService
+    def importService
 
 
     def index(Integer max) {
@@ -41,6 +42,21 @@ class TeamController {
         respond new Team(params)
     }
 
+    def importTeams() {
+    }
+
+    def doImport() {
+        def file = request.getFile('inputFile')
+        if (file.empty) {
+            flash.message = 'File cannot be empty'
+            render view" 'importTeams"
+            return
+        }
+        importService.kacrImportWithMapper(file, session.currentCompetition)
+
+        redirect action: 'index'
+    }
+
     @Transactional
     def save(Team team) {
         if (team == null) {
@@ -59,7 +75,6 @@ class TeamController {
 
         request.withFormat {
             form multipartForm {
-                def teamList = Team.find {}
                 flash.message = message(code: 'default.created.message', args: [message(code: 'team.label', default: 'Team'), team.id])
                 redirect action: 'index'
             }

@@ -88,6 +88,10 @@
         <td colspan="8">
             <g:link class="btn btn-default" action="create"><g:message code="default.new.label"
                                                                        args="[entityName]"/></g:link>
+
+            <g:link class="btn btn-default" action="importTeams"><g:message code="default.button.import.label"
+                                                                       args="['Kacr']"/></g:link>
+
             <g:link class="btn btn-default" action="json">JSON</g:link>
             <export:formats action="testPrintPdf" formats="['pdf','csv']" />
         </td>

@@ -84,6 +84,10 @@ dependencies {
 
     //autosuggestion
     compile "org.grails.plugins:ajaxdependancyselection:1.0"
+
+    //csv import/export
+    compile "net.sf.opencsv:opencsv:2.3"
+    compile 'net.sf.supercsv:super-csv:2.4.0'
 }
 
 task wrapper(type: Wrapper) {
