@@ -22,6 +22,10 @@ class Team {
     Category category
     Size size
 
+    String contact
+    String email
+    String country
+
     static belongsTo = [competition: Competition]
 
     static mapping = {
@@ -35,7 +39,9 @@ class Team {
         osa nullable: true
         kennel nullable: true
         breed nullable: true
-
+        contact nullable: true
+        email nullable: true
+        country nullable: true
     }
 
     static transients = ['nickName', 'fullTeamName']

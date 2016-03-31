@@ -18,6 +18,9 @@
                 <f:display property="breed"/>
                 <f:display property="osa"/>
                 <f:display property="kennel"/>
+                <f:display property="contact"/>
+                <f:display property="email"/>
+                <f:display property="country"/>
             </f:with>
         </div>
 
