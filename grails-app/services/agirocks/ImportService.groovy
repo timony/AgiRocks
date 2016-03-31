@@ -10,7 +10,6 @@ class ImportService {
     static
     def mapping = ['workingBookNumber': 0, "firstName": 1, 'sureName': 2, 'dogName': 3, 'kennel': 4, 'breed': 5, 'size': 6, 'category': 10]
 
-    @Transactional(readOnly = false)
     def kacrImportWithMapper(MultipartFile kacrFile, Competition competition) {
         InputStreamReader isReader = new InputStreamReader(kacrFile.inputStream)
         CSVReader reader = new CSVReader(isReader)
@@ -21,30 +20,33 @@ class ImportService {
 
         while ((nextLine = reader.readNext()) != null) {
 
-            Team.withTransaction() {
-                Team team = mapToBean(nextLine);
-                team.competition = competition
-                log.info("Validation results: ${team.validate()}")
-
-                if (!team.save(flush: true)) {
-                    team.errors.each {
-                        log.error(it)
-                    }
+            Team team = mapToBean(nextLine, new Team());
+            if (team.workingBookNumber) {
+                Team present = Team.findByWorkingBookNumber(team.workingBookNumber)
+                if (present) {
+                    mapToBean(nextLine, present)
+                    team = present
                 }
             }
 
+            team.competition = competition
+            log.info("Validation results: ${team.validate()}")
+
+            if (!team.save(flush: true)) {
+                team.errors.each {
+                    log.error(it)
+                }
+            }
         }
     }
 
-    def Team mapToBean(nextLine) {
-        Team team = new Team()
+    def Team mapToBean(nextLine, team) {
 
         mapping.each { key, value ->
             String cell = nextLine[value]
 
             def field = convertToField(key, cell)
             team."$key" = field
-
         }
         team
     }
@@ -56,6 +58,9 @@ class ImportService {
                 break
             case 'category':
                 Category.valueOf(cell)
+                break
+            case 'workingBookNumber':
+                '0'.equals(cell) ? null : cell
                 break
             default:
                 cell
