@@ -9,20 +9,34 @@
 <body>
 <g:form resource="${this.team}" method="DELETE" class="form-horizontal">
     <div class="panel panel-default">
-        <div class="panel-body">
-            <f:with bean="team">
-                <f:display property="workingBookNumber"/>
-                <f:display property="firstName" />
-                <f:display property="sureName"/>
-                <f:display property="nickName"/>
-                <f:display property="breed"/>
-                <f:display property="osa"/>
-                <f:display property="kennel"/>
-                <f:display property="contact"/>
-                <f:display property="email"/>
-                <f:display property="country"/>
-            </f:with>
-        </div>
+        <f:with bean="team">
+            <div class="panel-body">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Handler</div>
+                        <div class="panel-body">
+                            <f:display property="workingBookNumber"/>
+                            <f:display property="firstName"/>
+                            <f:display property="sureName"/>
+                            <f:display property="contact"/>
+                            <f:display property="email"/>
+                            <f:display property="country"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Dog</div>
+                        <div class="panel-body">
+                            <f:display property="nickName"/>
+                            <f:display property="breed"/>
+                            <f:display property="osa"/>
+                            <f:display property="kennel"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </f:with>
 
         <div class="panel-footer">
 
