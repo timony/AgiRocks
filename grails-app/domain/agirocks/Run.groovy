@@ -2,6 +2,7 @@ package agirocks
 
 class Run {
 
+    String name
     int length
     int obstacleCount
     String referee

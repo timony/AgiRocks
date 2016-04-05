@@ -20,6 +20,7 @@ class CompetitionController {
     def setCurrrentCompetition(Competition competition) {
         session["currentCompetition"] = competition
         session["currentDay"] = null
+        session["currentRun"] = null
         redirect(action: 'show', params: [id: competition.id])
     }
 

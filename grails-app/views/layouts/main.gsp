@@ -26,14 +26,20 @@
     <g:if test="${session.currentCompetition}">
         <li><g:link controller="competition" action="show" class="btn btn-default"
                     id="${session.currentCompetition.id}">
-                Competition: ${session.currentCompetition.name}
+                <g:message code="competition.label"/>: ${session.currentCompetition.name}
             </g:link>
 
         </li>
     </g:if>
     <g:if test="${session.currentDay}">
         <li><g:link controller="day" action="show" class="btn btn-default"
-                    id="${session.currentDay.id}">Day: ${session.currentDay.date.format('dd. MM. yyyy')}</g:link></li>
+                    id="${session.currentDay.id}">
+            <g:message code="day.label" />: ${session.currentDay.date.format('dd. MM. yyyy')}</g:link></li>
+    </g:if>
+    <g:if test="${session.currentRun}">
+        <li><g:link controller="run" action="show" class="btn btn-default"
+                    id="${session.currentRun.id}">
+            <g:message code="run.label" />: ${session.currentRun.name}</g:link></li>
     </g:if>
 </ol>
 

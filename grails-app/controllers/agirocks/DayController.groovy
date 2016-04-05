@@ -14,11 +14,15 @@ class DayController {
     }
 
     def show(Day day) {
+        if (!day) {
+            day = session["currentDay"]
+        }
         respond day
     }
 
     def setCurrrentDay(Day day) {
         session["currentDay"] = day
+        session["currentRun"] = null
         redirect(action: 'show', params: [id: day.id])
     }
 
