@@ -5,7 +5,9 @@
     <export:resource />
     <meta name="layout" content="main"/>
     <g:set var="entityName" value="${message(code: 'team.label', default: 'Competition')}"/>
-    <title><g:message code="default.list.label" args="[entityName]"/></title>
+    <title>
+        <g:message code="default.list.label" args="[entityName]"/>
+    </title>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -19,11 +21,8 @@
                     $('.searchable tr').filter(function () {
                         return rex.test($(this).text());
                     }).show();
-
                 })
-
             }(jQuery));
-
         });
 
         $(function () {
@@ -34,11 +33,62 @@
 </head>
 
 <body>
+<div class="modal fade" id="statisticModal" tabindex="-1" role="dialog" aria-labelledby="Statistics" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title"><g:message code="statistics.label"/></h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 "><strong><g:message code="overall.label" /></strong></div>
+                    <div class="col-md-4 col-md-offset-4">${teamCount}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 "><strong><g:message code="size.label" /></strong></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Size.S.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamSCount}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Size.M.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamMCount}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Size.L.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamLCount}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 "><strong><g:message code="category.label" /></strong></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Category.A1.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamA1Count}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Category.A2.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamA2Count}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Category.A3.toString()}" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${teamA3Count}</div>
+                </div>
 
-<table class="table table-striped table-hover table-condensed   ">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><g:message code="default.button.close.label" /></button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-striped table-hover table-condensed">
     <thead>
     <tr>
-        <th></th>
+        <th>
+            <span class="glyphicon glyphicon-scale" data-toggle="modal" data-target="#statisticModal" />
+        </th>
         <g:sortableColumn property="size" titleKey="size.label"/>
         <g:sortableColumn property="category" titleKey="category.label"/>
         <g:sortableColumn property="workingBookNumber" titleKey="property.workingBookNumber.label"/>
@@ -102,5 +152,6 @@
 <div class="pagination">
     <g:paginate total="${teamCount ?: 0}"/>
 </div>
+
 </body>
 </html>

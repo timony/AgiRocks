@@ -31,7 +31,16 @@ class TeamController {
 
         def days = Competition.get(session.currentCompetition.id).days
 
-        respond Team.findAllByCompetition(session.currentCompetition, params), model: [teamCount: Team.count(), days: days]
+        def teams = Team.findAllByCompetition(session.currentCompetition, params)
+        respond teams, model: [teamCount: teams.size(),
+                               days: days,
+                               teamLCount: teams.count {Size.L == it.size},
+                               teamMCount: teams.count {Size.M == it.size},
+                               teamSCount: teams.count {Size.S == it.size},
+                               teamA1Count: teams.count {Category.A1 == it.category},
+                               teamA2Count: teams.count {Category.A2 == it.category},
+                               teamA3Count: teams.count {Category.A3 == it.category}
+        ]
     }
 
     def show(Team team) {
