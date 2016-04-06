@@ -21,7 +21,7 @@
                     <g:link controller="run" action="setCurrrentRun" id="${run.id}"
                             class="btn btn-xs btn-default"><g:message code="default.button.select.label"/>
                     </g:link>
-                    <g:link controller="run" action="edit" id="${day.id}" class="btn btn-xs btn-default"><g:message
+                    <g:link controller="run" action="edit" id="${run.id}" class="btn btn-xs btn-default"><g:message
                             code="default.button.edit.label"/></g:link>
                 </td>
             </tr>

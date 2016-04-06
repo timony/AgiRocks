@@ -1,7 +1,8 @@
 package agirocks
 
-import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
+import static org.springframework.http.HttpStatus.*
 
 @Transactional(readOnly = true)
 class RunController {
@@ -19,7 +20,9 @@ class RunController {
 
     def create() {
         Day day = Day.get(params.dayId)
-        respond new Run(day: day)
+        Competition competition = session["currentCompetition"]
+        def days  = Day.findAllByCompetition(competition)
+        respond new Run(day: day), model:[dayList: days]
     }
 
     def setCurrrentRun(Run run) {
@@ -53,7 +56,9 @@ class RunController {
     }
 
     def edit(Run run) {
-        respond run
+        Competition competition = session["currentCompetition"]
+        def days  = Day.findAllByCompetition(competition)
+        respond run, model:[dayList: days]
     }
 
     @Transactional

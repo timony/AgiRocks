@@ -17,8 +17,6 @@
     <fieldset class="buttons">
         <g:submitButton name="create" class="btn btn-default"
                         value="${message(code: 'default.button.create.label', default: 'Create')}"/>
-        <g:link class="btn btn-default" controller="day" action="show" id="${this.run.day.id}">
-            <g:message code="default.button.cancel.label"/></g:link>
     </fieldset>
 </g:form>
 

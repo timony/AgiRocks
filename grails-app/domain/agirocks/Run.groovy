@@ -10,5 +10,6 @@ class Run {
     static  belongsTo = [day: Day]
 
     static constraints = {
+        name: unique: 'day.competion'
     }
 }
