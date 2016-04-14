@@ -138,6 +138,7 @@
                                             controller: 'team',
                                             action: 'toggleRegistered',
                                             id: team.id,
+                                            update: 'register_'+team.id+'_'+day.id,
                                             params: '\'registered=\' + this.checked + \'&dayId=\' + ' + day.id
                                 )}" />
                 </g:each>
