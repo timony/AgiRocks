@@ -21,6 +21,7 @@ class ImportService {
             'category'          : 10,
             'contact'           : 11,
             'email'             : 12,
+            'paid'              : 14,
             'country'           : 17
     ]
 

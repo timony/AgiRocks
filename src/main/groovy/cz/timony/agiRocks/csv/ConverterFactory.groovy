@@ -16,6 +16,9 @@ class ConverterFactory {
             case 'category':
                 new CategoryConverter()
                 break
+            case 'paid':
+                new DoubleConverter()
+                break
             default:
                 new DefaultConverter()
                 break

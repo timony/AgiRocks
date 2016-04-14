@@ -17,8 +17,6 @@ class AutoCompletionServiceSpec extends Specification {
     AutoCompletionService service
 
     def setupData() {
-
-
     }
 
     def setup() {

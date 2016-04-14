@@ -1,5 +1,7 @@
-<%@ page import="agirocks.Competition" %>
+<%@ page import="agirocks.Registration; agirocks.Competition" %>
 <!DOCTYPE html>
+
+<g:set var="registrationService" bean="registrationService"/>
 <html>
 <head>
     <export:resource />
@@ -74,7 +76,21 @@
                     <div class="col-md-4 col-md-offset-1"><strong><g:message message="${agirocks.Category.A3.toString()}" /></strong></div>
                     <div class="col-md-4 col-md-offset-3">${teamA3Count}</div>
                 </div>
-
+                <div class="row">
+                    <div class="col-md-4 "><strong><g:message code="billing.label" /></strong></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message code="overall.label" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${paidSum}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message code="billing.already.paid.label" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${paidCount}</div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 col-md-offset-1"><strong><g:message code="billing.not.yet.paid.label" /></strong></div>
+                    <div class="col-md-4 col-md-offset-3">${notPaidCount}</div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><g:message code="default.button.close.label" /></button>
@@ -89,13 +105,14 @@
         <th>
             <span class="glyphicon glyphicon-scale" data-toggle="modal" data-target="#statisticModal" />
         </th>
+        <g:sortableColumn property="paid" titleKey="paid.label"/>
         <g:sortableColumn property="size" titleKey="size.label"/>
         <g:sortableColumn property="category" titleKey="category.label"/>
         <g:sortableColumn property="workingBookNumber" titleKey="property.workingBookNumber.label"/>
         <g:sortableColumn property="firstName" titleKey="property.firstName.label"/>
         <g:sortableColumn property="sureName" titleKey="property.sureName.label"/>
         <g:sortableColumn property="dogName" titleKey="property.dogName.label"/>
-        <g:sortableColumn property="breed" titleKey="property.breed.label"/>
+        <g:sortableColumn property="paid" titleKey="property.paid.label"/>
         <th>
             <div class="input-group input-group-sm" style="width: 150px;">
                 <span class="input-group-addon" id="addon1">
@@ -113,17 +130,27 @@
         <tr>
             <td>
                 <g:each in="${days}" var="day" status="j">
-                    <g:checkBox name="myCheckbox" value="${false}" data-toggle="tooltip" data-original-title="${day}"/>
+                    <g:checkBox name='registredToDay'
+                                id="register_${team.id}_${day.id}"
+                                value="${registrationService.isTeamRegistered(team, day)}"
+                                data-toggle="tooltip" data-original-title="${day}"
+                                onclick="${remoteFunction(
+                                            controller: 'team',
+                                            action: 'toggleRegistered',
+                                            id: team.id,
+                                            params: '\'registered=\' + this.checked + \'&dayId=\' + ' + day.id
+                                )}" />
                 </g:each>
             </td>
+            <td>${fieldValue(bean: team, field: 'paid')}</td>
             <td align="right">${fieldValue(bean: team, field: 'size')}</td>
             <td>${fieldValue(bean: team, field: 'category')}</td>
             <td>${fieldValue(bean: team, field: 'workingBookNumber')}</td>
             <td><g:link action="show"
                         id="${team.id}">${fieldValue(bean: team, field: "firstName")}</g:link></td>
             <td>${fieldValue(bean: team, field: 'sureName')}</td>
-            <td>${fieldValue(bean: team, field: 'dogName')}</td>
-            <td>${fieldValue(bean: team, field: 'breed')}</td>
+            <td><div data-toggle="tooltip" data-original-title="${team.breed}">${fieldValue(bean: team, field: 'dogName')}</div></td>
+            <td>${fieldValue(bean: team, field: 'paid')}</td>
             <td>
                 <g:link action="show" id="${team.id}" class="btn btn-xs btn-default"><g:message
                         code="default.button.view.label"/></g:link>
@@ -135,7 +162,7 @@
     </tbody>
     <tfoot>
     <tr>
-        <td colspan="8">
+        <td colspan="10">
             <g:link class="btn btn-default" action="create"><g:message code="default.new.label"
                                                                        args="[entityName]"/></g:link>
 

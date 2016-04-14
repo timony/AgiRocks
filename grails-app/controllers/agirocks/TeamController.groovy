@@ -17,6 +17,7 @@ class TeamController {
 
     def autoCompletionService
     def importService
+    def registrationService
 
 
     def index(Integer max) {
@@ -39,7 +40,10 @@ class TeamController {
                                teamSCount: teams.count {Size.S == it.size},
                                teamA1Count: teams.count {Category.A1 == it.category},
                                teamA2Count: teams.count {Category.A2 == it.category},
-                               teamA3Count: teams.count {Category.A3 == it.category}
+                               teamA3Count: teams.count {Category.A3 == it.category},
+                               paidSum: teams.sum {it.paid},
+                               paidCount: teams.count {it.paid > 0},
+                               notPaidCount: teams.count {it.paid == 0}
         ]
     }
 
@@ -171,6 +175,11 @@ class TeamController {
 
     def json() {
         render Team.list() as JSON
+    }
+
+    def toggleRegistered = {
+        response.status = 200
+        render registrationService.registerTeamToDay(params)
     }
 
     def breedList = {

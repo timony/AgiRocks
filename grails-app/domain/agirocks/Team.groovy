@@ -26,6 +26,8 @@ class Team {
     String email
     String country
 
+    Double paid
+
     static belongsTo = [competition: Competition]
 
     static mapping = {
@@ -42,6 +44,7 @@ class Team {
         contact nullable: true
         email nullable: true
         country nullable: true
+        paid nullable: true
     }
 
     static transients = ['nickName', 'fullTeamName']
