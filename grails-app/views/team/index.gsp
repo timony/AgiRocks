@@ -105,7 +105,6 @@
         <th>
             <span class="glyphicon glyphicon-scale" data-toggle="modal" data-target="#statisticModal" />
         </th>
-        <g:sortableColumn property="paid" titleKey="paid.label"/>
         <g:sortableColumn property="size" titleKey="size.label"/>
         <g:sortableColumn property="category" titleKey="category.label"/>
         <g:sortableColumn property="workingBookNumber" titleKey="property.workingBookNumber.label"/>
@@ -144,12 +143,11 @@
                                 )}" />
                 </g:each>
             </td>
-            <td>${fieldValue(bean: team, field: 'paid')}</td>
             <td align="right">${fieldValue(bean: team, field: 'size')}</td>
             <td>${fieldValue(bean: team, field: 'category')}</td>
             <td>${fieldValue(bean: team, field: 'workingBookNumber')}</td>
             <td><g:link action="show"
-                        id="${team.id}">${fieldValue(bean: team, field: "firstName")}</g:link></td>
+        id="${team.id}">${fieldValue(bean: team, field: "firstName")}</g:link></td>
             <td>${fieldValue(bean: team, field: 'sureName')}</td>
             <td><div data-toggle="tooltip" data-original-title="${team.breed}">${fieldValue(bean: team, field: 'dogName')}</div></td>
             <td>${fieldValue(bean: team, field: 'paid')}</td>
