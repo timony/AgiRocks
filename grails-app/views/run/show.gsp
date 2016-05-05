@@ -11,10 +11,11 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="row">
-                <div class="col-md-3"><b><g:message code="property.name.label"/>:</b> ${run.name}</div>
+                <div class="col-md-2"><b><g:message code="property.name.label"/>:</b> ${run.name}</div>
+                <div class="col-md-2"><b><g:message code="property.type.label"/>:</b> ${run.type}</div>
                 <div class="col-md-2"><b><g:message code="property.obstacleCount.label"/>:</b> ${run.obstacleCount}</div>
                 <div class="col-md-2"><b><g:message code="property.length.label"/>:</b> ${run.length}</div>
-                <div class="col-md-3"><b><g:message code="property.referee.label"/>:</b> ${run.referee}</div>
+                <div class="col-md-2"><b><g:message code="property.referee.label"/>:</b> ${run.referee}</div>
                 <div class="col-md-2"><b><g:message code="property.date.label"/>:</b> <g:formatDate date="${run.day.date}" format="dd. MM. yyyy" /></div>
             </div>
         </div>

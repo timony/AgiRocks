@@ -29,12 +29,15 @@ class TeamController {
 
         //params.max = Math.min(max ?: 10, 100)
         params.max = Math.min(max ?: 1000, 1000)
+        def competition = session.currentCompetition
+        def days = Competition.get(competition.id).days
+        def teams = Team.findAllByCompetition(competition, params)
 
-        def days = Competition.get(session.currentCompetition.id).days
+        def regs = registrationService.getRegistrationsByCompetition(competition)
 
-        def teams = Team.findAllByCompetition(session.currentCompetition, params)
         respond teams, model: [teamCount: teams.size(),
                                days: days,
+                               registrations: regs,
                                teamLCount: teams.count {Size.L == it.size},
                                teamMCount: teams.count {Size.M == it.size},
                                teamSCount: teams.count {Size.S == it.size},

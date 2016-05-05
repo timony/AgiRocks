@@ -10,9 +10,9 @@ class BootStrap {
 
         new Team(workingBookNumber: '002414', firstName: 'Tomas', sureName: 'Mika', size: Size.L, category: Category.A3, dogName: 'Witty', competition: c1).save(failOnError: true)
 
-        new Run(name: "D1 - Run 1", day: day1, obstacleCount: 18, length: 200, referee: "Some referee").save(failOnError: true)
-        new Run(name: "D1 - Run 2", day: day1, obstacleCount: 20, length: 187, referee: "Some referee").save(failOnError: true)
-        new Run(name: "D2 - Run 1", day: day2, obstacleCount: 19, length: 176, referee: "Some other referee").save(failOnError: true)
+        new Run(name: "D1 - Run 1", day: day1, obstacleCount: 18, length: 200, referee: "Some referee", type: RunType.Jumping).save(failOnError: true)
+        new Run(name: "D1 - Run 2", day: day1, obstacleCount: 20, length: 187, referee: "Some referee", type: RunType.Agility).save(failOnError: true)
+        new Run(name: "D2 - Run 1", day: day2, obstacleCount: 19, length: 176, referee: "Some other referee", type: RunType.Exam).save(failOnError: true)
 
     }
     def destroy = {

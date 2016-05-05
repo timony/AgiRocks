@@ -130,9 +130,10 @@
         <tr>
             <td>
                 <g:each in="${days}" var="day" status="j">
+
                     <g:checkBox name='registredToDay'
                                 id="register_${team.id}_${day.id}"
-                                value="${registrationService.isTeamRegistered(team, day)}"
+                                value="${registrations.get(team.id).get(day.id)}"
                                 data-toggle="tooltip" data-original-title="${day}"
                                 onclick="${remoteFunction(
                                             controller: 'team',
